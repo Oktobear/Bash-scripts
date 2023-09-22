@@ -62,7 +62,7 @@ Ange ditt val: " recovery_option
 
 read -p "Vill du göra en backup eller återställa filer? (backup/återställa): " action
 
-case $action in
+case ${action,,} in
 "backup")
     perform_backup
     ;;
