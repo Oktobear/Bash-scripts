@@ -1,0 +1,24 @@
+#!/bin/bash
+
+read -p "Enter IP or hostname: " ip
+read -p "Enter your desired fileformat please, xml, txt, or grepable: " format
+echo "Scan is performed with -sC -T4 and -p- parameters..."
+echo "Performing scan..."
+case ${format,,} in
+	"xml")
+		sudo nmap -v -p- -sC -T4 -oX nmapscan.xml $ip
+		;;
+	"txt")
+		sudo nmap -v -p- -sC -T4 -oN nmapscan.txt $ip
+		;;
+	"grepable")
+		sudo nmap -v -p- -sC -T4 -oG nmapscan.gnmap $ip
+		;;
+		*)
+		echo "Please check your input"
+		exit 1
+		;;
+esac
+
+echo "Scan completed, file will be located next to the script."
+
